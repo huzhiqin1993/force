@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>  
+<meta charset="utf-8">    
+  
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<link href="css/jquery-ui.css" rel="stylesheet">
+<title>英汉互译</title>        
+<style>  
+#contianer
+{
+	margin-left: 10px;
+}
+input[type="text"]
+{
+	width: 180px;
+	height: 20px;
+}
+</style>  
+<script type="text/javascript" src="js/jquery.min.js"></script>
+
+</head> 
+<body>   
+
+<div id="contianer">
+<form name="LoginForm" >
+<h3>
+英汉、汉英词典
+</h3>
+<p>对英文支持不是很好，不建议查询短英文</p>
+
+<p>
+
+<span  for="label" class="label">请输入查询条件:</span>
+<input value="" id="serach" name="serach" type="text"/>
+<p/>
+
+<input type="button"    id="submit"  onClick="refer()"  name="submit" value="查询"/>
+</form> 
+       
+<div id="back" >
+
+</div>  
+</div>
+<script>      
+  
+		function ajax(serachval)
+			{
+		 $.ajax({
+		    url:'dict.php',	
+			async:false,
+            method: 'post',
+	//		dataType: 'json', 
+            data: {serach:serachval},
+          success: function(data){
+	   document.getElementById("back").innerHTML=data+"<br/>"+"<font size='3' face='Microsoft YaHei' color='green'>"+"搜索完成"+"<font/>";
+       	 
+	  // window.location.reload();
+    	  }
+		  
+        });        
+        // 别忘记了这句
+		
+        return false;
+}
+  
+  
+//#######################	  
+
+function  refer() {	
+
+var  svalue= document.getElementById('serach').value;
+var  svalue=  svalue .replace(/\s+/g, ' ');
+var  svalue= svalue.replace(/(^\s*)|(\s*$)/g, "");	 
+        
+if (svalue == "")
+  {
+    alert("搜索条件不能为空!");
+    LoginForm.serach.focus();
+    return false;
+  }else
+  {
+  	ajax(svalue);
+  	return false;
+  }
+
+    };
+ 
+
+</script>   
+
+    </body>  
+
+</html>    

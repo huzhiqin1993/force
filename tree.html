@@ -1,0 +1,339 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+<body>
+
+<div title="关联性配置">  
+    <div id="relevanceRule" class="relevance-rule">  
+        <form class="relevance-form" id="relevanceForm">  
+            <div class="col100" ><a onclick="importRelevance();" href="#" class="linkbutton" data-options="iconCls:'icon-import'">导入</a></div>  
+            <div class="clr"></div>  
+        </form>  
+        <div id="relevanceRuleConfig"></div>  
+    </div>  
+</div>  
+  
+<div class="menu" id="menu">  
+    <div onclick="addSubTable()" data-options="iconCls:'icon-add'">添加子表</div>  
+    <div onclick="editPropertity()" data-options="iconCls:'icon-edit'">编辑表属性</div>  
+    <div onclick="removeTable()" data-options="iconCls:'icon-remove'">删除表</div>  
+</div>  
+      
+<div id="tablePropertity" class="dialog">  
+    <form id="propertityForm">  
+        <div class="col75">表名:</div>  
+        <div class="col175"><input id="relevanceTableName" type="text"></div>  
+        <div class="col75">主表ID:</div>  
+        <div class="col175"><input id="mainTableId" type="text"></div>  
+        <div class="col75">关联字段:</div>  
+        <div class="col175"><input id="relevanceField" type="text"></div>  
+        <div class="clr"></div>  
+    </form>  
+</div>  
+<!--<script type="text/javascript" src="<%=request.getContextPath()%>/jsproject/dqms/rulemanageconfig/relevance.js"></script>-->  
+<script>
+//初始化属性弹出窗  
+$("#tablePropertity").dialog({  
+    title: '编辑表属性',      
+    width: 300,      
+    height: 200,      
+    closed: true,      
+    cache: false,          
+    modal: true,  
+    buttons:[{  
+        text:'保存',  
+        handler:function(){  
+            var relevanceTableName = $("#relevanceTableName").val();  
+            var mainTableId = $("#mainTableId").val();  
+            var relevanceField = $("#relevanceField").val();  
+            currentNode.name = relevanceTableName;  
+            currentNode.id = relevanceField;  
+            var rootNode = currentNode;  
+            while(rootNode.parent){  
+                rootNode = rootNode.parent;  
+            }  
+            drawTree(rootNode);  
+            $("#tablePropertity").dialog("close");  
+        }  
+    },{  
+        text:'关闭',  
+        handler:function(){  
+            $("#tablePropertity").dialog("close");  
+        }  
+  
+    }]  
+});  
+
+
+
+
+
+
+
+var height = 500;//定义全局变量  
+var width = 1147;  
+  
+//定义当前操作节点对象  
+var currentNode = null;  
+  
+//定义布局偏移量  
+var leftW = 50,topH = 80;  
+  
+//定义布局大小  
+var treeWidth = width-leftW;  
+var treeHeight = height-topH;  
+  
+//绘制画布  
+var svg = d3.select("#relevanceRuleConfig").append("svg")  
+        .attr("width", treeWidth)  
+        .attr("height", treeHeight)  
+        .append("g")  
+        .attr("transform", "translate(80,0)");//定义偏移量  
+  
+//定义D3树布局范围  
+var tree = d3.layout.tree()  
+    .size([treeHeight, treeWidth-180])//注意D3布局跟svg坐标系无关,size(高，宽)  
+    .separation(function(a, b) { return (a.parent == b.parent ? 1 : 2); });//设置相隔节点的间距，a、b节点相隔  
+  
+//定义连线过渡器  
+var diagonal = d3.svg.diagonal()  
+    .projection(function(d) { return [d.y, d.x]; });//设置连线点的变换器  
+  
+$(function(){  
+    initTree();  
+      
+    //加载数据  
+    d3.json("data.json", function(error, root) {  
+        drawTree(root);  
+    });  
+})  
+  
+function drawTree(sourceData){  
+    if(!sourceData){  
+        console.log("无数据可显示！");  
+        return;  
+    }  
+      
+    var nodes = tree.nodes(sourceData); //获取所有节点信息  
+    var links = tree.links(nodes);  //获取节点的连线信息集合  
+      
+    //记录当前节点的位置  
+    nodes.forEach(function(d) {  
+            d.x0 = d.x;  
+            d.y0 = d.y;  
+        });  
+       
+    tree = tree.size([treeHeight, treeWidth-180]);  
+      
+    //渲染节点  
+    drawTreeNode(sourceData,nodes);  
+    //渲染连线  
+    drawLink(sourceData,links);  
+      
+      
+}  
+  
+//重绘节点  
+function drawTreeNode(sourceData,nodes){  
+      
+    //获取修改前的节点，当节点改变时新节点需与旧节点的id相对应  
+    var node = svg.selectAll(".node")  
+            .data(nodes,function(d) { return d.id });  
+      
+    //绘制新增的节点对象  
+    var nodeEnter = node.enter()  
+            .append("g")  
+            .attr("class", "node")  
+            .attr("transform", function(d) { return "translate(" + sourceData.y0 + "," + sourceData.x0 + ")"; })  
+            .on("dblclick",function(d,index){  
+                    currentNode = d;  
+                    editPropertity();  
+            })  
+            .on("contextmenu",function(d,index){  
+                d3.event.preventDefault();  
+                currentNode = d;  
+                $('#menu').menu('show',{  
+                    left: d3.event.pageX,  
+                    top: d3.event.pageY  
+                });  
+            });  
+      
+    //为新增的节点对象添加图形  
+    nodeEnter.append("circle").attr("r", 4.5);  
+      
+    //为新增的节点对像添加文字  
+    nodeEnter.append("text")        //添加节点显示文本  
+             .attr("dx", function(d) { return d.children ? -8 : 8; })//定义文本显示x轴偏移量  
+             .attr("dy", 3)//定义文本显示y轴偏移量  
+             .style("text-anchor", function(d) { return d.children ? "end" : "start"; })//文字对齐显示  
+             .text(function(d) { return d.name; });  
+      
+      
+      
+    //修改节点处理  
+    var nodeUpdate =node.transition()  
+                .duration(500)//使节点缓慢过度  
+                .attr("transform", function(d) {   
+                    return "translate(" + d.y + "," + d.x + ")"; //过渡到新的坐标位置  
+                });  
+      
+    nodeUpdate.select("circle").attr("r", 4.5);  
+      
+    //新增节点文本显示  
+    nodeUpdate.select("text")       //添加节点显示文本  
+             .attr("dx", function(d) { return d.children ? -8 : 8; })//定义文本显示x轴偏移量  
+             .attr("dy", 3)//定义文本显示y轴偏移量  
+             .style("text-anchor", function(d) { return d.children ? "end" : "start"; })//文字对齐显示  
+             .text(function(d) { return d.name; });  
+      
+    //删除的节点处理  
+    var nodeExit = node.exit()  
+            .transition()  
+            .duration(500)  
+            .attr("transform", function(d) {   
+                return "translate(" + d.y + "," + d.x + ")";   
+            })  
+            .remove();  
+}  
+  
+//重绘连线  
+function drawLink(sourceData,links){  
+      
+    //获取连线的update部分  
+    var linkUpdate = svg.selectAll(".link")  
+             .data(links, function(d){ return d.target.id; });  
+       
+    //获取连线的enter部分  
+    var linkEnter = linkUpdate.enter();  
+       
+    //获取连线的exit部分  
+    var linkExit = linkUpdate.exit();  
+      
+    //连线的 Enter 部分的处理办法  
+    linkEnter.insert("path",".node")  
+              .attr("class", "link")  
+              .attr("d", function(d) {  
+                  var o = {x: sourceData.x0, y: sourceData.y0};  
+                  return diagonal({source: o, target: o});  
+              })  
+              .attr("marker-end", function(d){  
+                  return getArrow();  
+              })  
+              .transition()  
+              .duration(500)  
+              .attr("d", diagonal);  
+       
+     //连线的 Update 部分的处理办法  
+     linkUpdate.transition()  
+            .duration(500)  
+            .attr("d", diagonal);  
+       
+     //连线的 Exit 部分的处理办法  
+     linkExit.transition()  
+              .duration(500)  
+              .attr("d", function(d) {  
+                var o = {x: sourceData.x, y: sourceData.y};  
+                return diagonal({source: o, target: o});  
+              })  
+              .remove();  
+}  
+  
+  
+/** 
+ * 定义扩展箭头方法 
+ */  
+function getArrow(){  
+     if($('marker#end-arrow').length==0){  
+     svg.append('svg:defs').append('svg:marker')  
+    .attr('id', 'end-arrow')  
+    .attr('viewBox', '0 -5 10 10')  
+    .attr('refX', 10)  
+    .attr('markerWidth', 6)//箭头参数适当按需调整  
+    .attr('markerHeight', 10)  
+    .attr('orient', 'auto')  
+    .append('svg:path')  
+    .attr('d', 'M0,-5L10,0L0,5')//绘制箭头形状  
+    .attr('fill', 'blue');  
+     }  
+     return 'url(#end-arrow)';  
+}  
+  
+  
+  
+//初始化布局属性  
+function initTree(){  
+    height = parseInt(window.parent.$("#iframe").height());  
+    width = parseInt(window.parent.$("#iframe").width());  
+      
+    treeWidth = width-leftW;  
+    treeHeight = height-topH;  
+      
+    d3.select("svg").attr("width", treeWidth);  
+    d3.select("svg").attr("height", treeHeight);  
+    tree.size([treeHeight, treeWidth-180]);  
+}  
+  
+//编辑节点属性  
+function editPropertity(){  
+    $CommonUI.getForm("#propertityForm").form("clear");  
+    $("#relevanceTableName").val(currentNode.name);  
+    if(currentNode.parent){  
+        $("#mainTableId").val(currentNode.parent.id);  
+    }  
+    $("#relevanceField").val(currentNode.id);  
+    $CommonUI.getDialog('#tablePropertity').dialog("open");  
+}  
+  
+//添加节点  
+var index = 100;  
+function addSubTable(){  
+    var newNode={  
+            id:++index,  
+            name:"new node",  
+            children:null  
+    };  
+    if(!currentNode.children){  
+        currentNode.children=[];  
+    }  
+    currentNode.children.push(newNode);  
+    var rootNode = currentNode;  
+    while(rootNode.parent){  
+        rootNode = rootNode.parent;  
+    }  
+    drawTree(rootNode);  
+}  
+  
+//删除节点  
+function removeTable(){  
+    //删除节点的孩子  
+    if(currentNode.children){  
+        currentNode.children=null;  
+    }  
+    var currentNodeId =  currentNode.id;  
+    var currentNodeParent =  currentNode.parent;  
+    if(currentNodeParent){//如果节点有父类，删除节点本身，保留其他节点信息  
+        for(var i=0;i<currentNodeParent.children.length;i++){  
+            if(currentNodeParent.children[i].id == currentNodeId){  
+                currentNodeParent.children.splice(i,1);  
+            }  
+        }  
+    }else{  
+        currentNode=null;  
+        $('#relevanceRuleConfig').first("g").children().remove();  
+    }  
+      
+    var rootNode = currentNode;  
+    if(rootNode ){  
+        while(rootNode.parent){  
+            rootNode = rootNode.parent;  
+        }  
+        drawTree(rootNode);  
+    }  
+}  
+</script> 
+</body>
+</html>

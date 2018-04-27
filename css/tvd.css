@@ -1,0 +1,88 @@
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+.node {
+display:block;
+}
+
+.link {
+  stroke: #000;
+  stroke-opacity: .9;
+  stroke-width:2;
+  fill:none;
+}
+.prop {
+	display:block;
+}
+.propbgpath{
+	stroke: #999;
+  stroke-opacity: .9;
+}
+.linkbg{
+fill:#FFF;
+stroke-width:1;
+}
+.nodeselect path{
+fill:#6699CC;
+stroke-width:0;
+}
+.nodeselect text{
+fill:#FFF;
+stroke-width:0;
+}
+.node text{
+text-anchor:middle;
+cursor:default;
+}
+.nodenormal path{
+fill:#FFF;
+stroke-width:0;
+}
+.nodenormal text{
+fill:#666;
+stroke-width:0;
+-webkit-text-size-adjust:none;
+}
+.nodeover path{
+fill:#99CC99;
+stroke-width:0;
+}
+.linkselect .link{
+	stroke: #FF6666;
+  stroke-opacity: .9;
+  stroke-width:1;
+  fill:none;}
+.linkselect .linkbox path{
+}
+.linkselect .linkbox text{
+stroke-width:0;
+fill:#000;
+
+}
+
+.linknormal .link{  
+	stroke: #999;
+  stroke-opacity: .9;
+  stroke-width:1;
+  fill:none;}
+.linknormal .linkbox path{}
+.linknormal .linkbox text{
+fill:#999;
+stroke-width:0;
+}
+.linkbox text{
+fill:#000;
+stroke-width:0;
+}
+.brush .extent {
+  fill-opacity: .1;
+  stroke: #fff;
+  shape-rendering: crispEdges;
+}
+.continue{
+*height:800px;
+width:80%;
+overflow:hidden;
+border:1px solid #888;
+}

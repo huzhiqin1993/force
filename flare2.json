@@ -1,0 +1,263 @@
+{
+    "name": "flare",
+    "children": [
+        {
+            "name": "analytics",
+            "children": [
+                {
+                    "name": "cluster",
+                    "children": [
+                        {"name": "AgglomerativeCluster","size": 33938},
+                        {"name": "CommunityStructure","size": 38312},
+                        {"name": "HierarchicalCluster","size": 63714},
+                        {"name": "MergeEdge","size": 88743}
+                    ]
+                },
+                {
+                    "name": "graph",
+                    "children": [
+                        {"name": "BetweennessCentrality","size": 3534},
+                        {"name": "LinkDistance","size": 5731},
+                        {"name": "MaxFlowMinCut","size": 7840},
+                        {"name": "ShortestPaths","size": 5914},
+                        {"name": "SpanningTree","size": 3416}
+                    ]
+                }  
+            ]
+        },
+	
+        {
+            "name": "analytic",
+            "children": [
+                {
+                    "name": "cluste",
+                    "children": [
+                        {"name": "AgglomerativeCluste","size": 33938},
+                        {"name": "CommunityStructur","size": 38312},
+                        {"name": "HierarchicalCluste","size": 63714},
+                        {"name": "MergeEdg","size": 88743}
+                    ]
+                },
+                {
+                    "name": "grap",
+                    "children": [
+                        {"name": "BetweennessCentralit","size": 3534},
+                        {"name": "LinkDistanc","size": 5731},
+                        {"name": "MaxFlowMinCu","size": 7840},
+                        {"name": "ShortestPath","size": 5914},
+                        {"name": "SpanningTre","size": 3416}
+                    ]
+                }  
+            ]
+        },
+	
+            {
+            "name": "analytics",
+            "children": [
+                {
+                    "name": "cluster",
+                    "children": [
+                        {"name": "AgglomerativeCluster","size": 33938},
+                        {"name": "CommunityStructure","size": 38312},
+                        {"name": "HierarchicalCluster","size": 63714},
+                        {"name": "MergeEdge","size": 88743}
+                    ]
+                },
+                {
+                    "name": "graph",
+                    "children": [
+                        {"name": "BetweennessCentrality","size": 3534},
+                        {"name": "LinkDistance","size": 5731},
+                        {"name": "MaxFlowMinCut","size": 7840},
+                        {"name": "ShortestPaths","size": 5914},
+                        {"name": "SpanningTree","size": 3416}
+                    ]
+                }  
+            ]
+        },
+	
+            {
+            "name": "analytics",
+            "children": [
+                {
+                    "name": "cluster",
+                    "children": [
+                        {"name": "AgglomerativeCluster","size": 33938},
+                        {"name": "CommunityStructure","size": 38312},
+                        {"name": "HierarchicalCluster","size": 63714},
+                        {"name": "MergeEdge","size": 88743}
+                    ]
+                },
+                {
+                    "name": "graph",
+                    "children": [
+                        {"name": "BetweennessCentrality","size": 3534},
+                        {"name": "LinkDistance","size": 5731},
+                        {"name": "MaxFlowMinCut","size": 7840},
+                        {"name": "ShortestPaths","size": 5914},
+                        {"name": "SpanningTree","size": 3416}
+                    ]
+                }  
+            ]
+        },
+	
+            {
+            "name": "analytics",
+            "children": [
+                {
+                    "name": "cluster",
+                    "children": [
+                        {"name": "AgglomerativeCluster","size": 33938},
+                        {"name": "CommunityStructure","size": 38312},
+                        {"name": "HierarchicalCluster","size": 63714},
+                        {"name": "MergeEdge","size": 88743}
+                    ]
+                },
+                {
+                    "name": "graph",
+                    "children": [
+                        {"name": "BetweennessCentrality","size": 3534},
+                        {"name": "LinkDistance","size": 5731},
+                        {"name": "MaxFlowMinCut","size": 7840},
+                        {"name": "ShortestPaths","size": 5914},
+                        {"name": "SpanningTree","size": 3416}
+                    ]
+                }  
+            ]
+        },
+	
+            {
+            "name": "analytics",
+            "children": [
+                {
+                    "name": "cluster",
+                    "children": [
+                        {"name": "AgglomerativeCluster","size": 33938},
+                        {"name": "CommunityStructure","size": 38312},
+                        {"name": "HierarchicalCluster","size": 63714},
+                        {"name": "MergeEdge","size": 88743}
+                    ]
+                },
+                {
+                    "name": "graph",
+                    "children": [
+                        {"name": "BetweennessCentrality","size": 3534},
+                        {"name": "LinkDistance","size": 5731},
+                        {"name": "MaxFlowMinCut","size": 7840},
+                        {"name": "ShortestPaths","size": 5914},
+                        {"name": "SpanningTree","size": 3416}
+                    ]
+                }  
+            ]
+        },
+	
+            {
+            "name": "analytics",
+            "children": [
+                {
+                    "name": "cluster",
+                    "children": [
+                        {"name": "AgglomerativeCluster","size": 33938},
+                        {"name": "CommunityStructure","size": 38312},
+                        {"name": "HierarchicalCluster","size": 63714},
+                        {"name": "MergeEdge","size": 88743}
+                    ]
+                },
+                {
+                    "name": "graph",
+                    "children": [
+                        {"name": "BetweennessCentrality","size": 3534},
+                        {"name": "LinkDistance","size": 5731},
+                        {"name": "MaxFlowMinCut","size": 7840},
+                        {"name": "ShortestPaths","size": 5914},
+                        {"name": "SpanningTree","size": 3416}
+                    ]
+                }  
+            ]
+        },
+	
+            {
+            "name": "analytics",
+            "children": [
+                {
+                    "name": "cluster",
+                    "children": [
+                        {"name": "AgglomerativeCluster","size": 33938},
+                        {"name": "CommunityStructure","size": 38312},
+                        {"name": "HierarchicalCluster","size": 63714},
+                        {"name": "MergeEdge","size": 88743}
+                    ]
+                },
+                {
+                    "name": "graph",
+                    "children": [
+                        {"name": "BetweennessCentrality","size": 3534},
+                        {"name": "LinkDistance","size": 5731},
+                        {"name": "MaxFlowMinCut","size": 7840},
+                        {"name": "ShortestPaths","size": 5914},
+                        {"name": "SpanningTree","size": 3416}
+                    ]
+                }  
+            ]
+        },
+	
+            {
+            "name": "analytics",
+            "children": [
+                {
+                    "name": "cluster",
+                    "children": [
+                        {"name": "AgglomerativeCluster","size": 33938},
+                        {"name": "CommunityStructure","size": 38312},
+                        {"name": "HierarchicalCluster","size": 63714},
+                        {"name": "MergeEdge","size": 88743}
+                    ]
+                },
+                {
+                    "name": "graph",
+                    "children": [
+                        {"name": "BetweennessCentrality","size": 3534},
+                        {"name": "LinkDistance","size": 5731},
+                        {"name": "MaxFlowMinCut","size": 7840},
+                        {"name": "ShortestPaths","size": 5914},
+                        {"name": "SpanningTree","size": 3416}
+                    ]
+                }  
+            ]
+        },
+	
+            {
+            "name": "analytics",
+            "children": [
+                {
+                    "name": "cluster",
+                    "children": [
+                        {"name": "AgglomerativeCluster","size": 33938},
+                        {"name": "CommunityStructure","size": 38312},
+                        {"name": "HierarchicalCluster","size": 63714},
+                        {"name": "MergeEdge","size": 88743}
+                    ]
+                },
+                {
+                    "name": "graph",
+                    "children": [
+                        {"name": "BetweennessCentrality","size": 3534},
+                        {"name": "LinkDistance","size": 5731},
+                        {"name": "MaxFlowMinCut","size": 7840},
+                        {"name": "ShortestPaths","size": 5914},
+                        {"name": "SpanningTree","size": 3416}
+                    ]
+                }  
+            ]
+        }
+
+
+
+
+
+	]
+
+
+
+
+}
